@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>飞翔的小鸟</title>
+		<style type="text/css">
+			*{
+				margin: 0px auto;
+			}
+			.box{
+				border-top: 1px solid transparent;
+				background-image: url("img/bg.jpg");
+				height: 480px;
+				width: 343px;
+				margin: 0px auto;
+				position: relative;
+				overflow: hidden;
+			}
+			.box2,.box3{
+				width: 343px;
+				height: 480px;
+				display: none;
+				position: absolute;
+				z-index: 2;
+			}
+			.box3{
+				z-index: 1;
+				display: block;
+			}
+			.head{
+				background-image: url("img/head.jpg");
+				width: 236px;
+				height: 76px;
+				position: relative;
+				animation: LogoUpDown 3s linear infinite;
+			}
+			.logobird{
+				position: absolute;
+				right: 0px;
+				top: 50%;
+				margin-top: -13px;
+				background-image: url("img/bird0.png");
+				width: 40px;
+				height: 26px;
+				animation: LogoBird 1s linear infinite;
+			}
+			.start{
+				margin-left: 64px;
+			}
+			.start,.submit{
+				bottom: 0px;
+				margin-right: 43px;
+				margin-top: 60px;
+			}
+			.logobox{
+				margin-top: 130px;
+			}
+			@keyframes LogoUpDown{
+				0%{
+					transform: translateY(0px);
+				}
+				50%{
+					transform: translateY(-50px);
+				}
+				100%{
+					transform: translateY(0px);
+				}
+			}
+			@keyframes LogoBird{
+				0%{
+					background-image: url("img/bird0.png");
+				}
+				50%{
+					background-image: url("img/bird1.png");
+				}
+				100%{
+					background-image: url("img/bird0.png");
+				}
+			}
+			.road{
+				position: absolute;
+				bottom: 43px;
+				animation: roadrun 3s infinite linear;
+				width: 686px;
+			}
+			.road img:nth-child(2){
+				position: absolute;
+				right: 0px;
+			}
+			@keyframes roadrun{
+				0%{
+					transform: translateX(0px);
+				}
+				100%{
+					transform: translateX(-343px);
+				}
+			}
+			.createzhuzi{
+				position: absolute;
+				top: 0px;
+				width: 62px;
+				height: 480px;
+				left: 405px;
+			}
+			.createTop{
+				position: absolute;
+				top: 0px;
+				width: 62px;
+				background-image: url("img/up_mod.png");
+			}
+			.createBottom{
+				position: absolute;
+				bottom: 59px;
+				width: 62px;
+				background-image: url("img/down_mod.png");
+			}
+			.createTopHead{
+				position: absolute;
+				bottom: 0px;
+			}
+			.createBottomHead{
+				position: absolute;
+				top: 0px;
+			}
+			.flyingbird{
+				position: absolute;
+				top: 225px;
+				left: 20px;
+				width: 40px;
+				height: 29px;
+				background-image: url("img/down_bird0.png");
+				display: none;
+				z-index: 2;
+			}
+
+			@keyframes birdDown{
+				0%{
+					background-image: url("img/down_bird0.png");
+				}
+				50%{
+					background-image: url("img/down_bird1.png");
+				}
+				100%{
+					background-image: url("img/down_bird0.png");
+				}
+			}
+
+			@keyframes birdUp{
+				0%{
+					background-image: url("img/up_bird0.png");
+				}
+				50%{
+					background-image: url("img/up_bird1.png");
+				}
+				100%{
+					background-image: url("img/up_bird0.png");
+				}
+			}
+			.scoreBox{
+				width: 56px;
+				height: 39px;
+				position: absolute;
+				left: 0px;
+				top: 0px;
+				z-index: 3;
+			}
+			.overbox{
+				width: 343px;
+				height: 300px;
+				position: absolute;
+				z-index: 3;
+				top: 100px;
+				display: none;
+			}
+			.overlogo{
+				position: absolute;
+				top: -200px;
+				left: 50%;
+				margin-left: -110.5px;
+				transition: 2s all;
+			}
+			.overscore{
+				margin-top: 10px;
+				width: 269px;
+				height: 135px;
+				background-image: url("img/message.jpg");
+				position: absolute;
+				top: 60px;
+				left: -300px;
+				transition: 1s all;
+			}
+			.overok{
+				position: absolute;
+				top: 400px;
+				left: 50%;
+				margin-left: -48px;
+				transition: 1s all;
+			}
+			.score{
+				position: absolute;
+				font-size: 24px;
+				right: 40px;
+				top: 40px;
+			}
+			.bestscore{
+				position: absolute;
+				font-size: 24px;
+				right: 40px;
+				top: 90px;
+			}
+			@keyframes logoDown{
+				0%{
+					transform: translateY(-200px);
+				}
+				100%{
+					transform: translateY(200px);
+				}
+			}
+			@keyframes scoreRight{
+				0%{
+					transform: translateX(-300px);
+				}
+				100%{
+					transform: translateX(337px);
+				}
+			}
+			@keyframes okUp{
+				0%{
+					transform: translateY(400px);
+				}
+				100%{
+					transform: translateY(-150px);
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<div class="scoreBox">
+				<img src="img/0.jpg" alt=""><img src="img/0.jpg" alt="">
+			</div>
+			<div class="box2"></div>
+			<div class="logobox">
+				<div class="head">
+					<div class="logobird"></div>
+				</div>
+				<img src="img/start.jpg" alt="" class="start"><img src="img/submit.jpg" alt="" class="submit">
+			</div>
+			<div class="flyingbird"></div>
+			<div class="road">
+				<img src="img/slider.jpg" alt=""><img src="img/slider.jpg" alt="">
+			</div>
+
+			<div class="overbox">
+				<img class="overlogo" src="img/game_over.jpg" alt="">
+				<div class="overscore">
+					<span class="score">0</span>
+					<span class="bestscore">0</span>
+				</div>
+				<img class="overok" src="img/ok.jpg" alt="">
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var road = document.querySelector('.road');
+		var start = document.querySelector('.start');
+		var logobox = document.querySelector('.logobox');
+		var box = document.querySelector('.box');
+		var bird = document.querySelector('.flyingbird');
+		var box2 = document.querySelector('.box2');
+		var scoreBox = document.querySelectorAll('.scoreBox img');
+		var overlogo = document.querySelector('.overlogo');
+		var overscore = document.querySelector('.overscore');
+		var overok = document.querySelector('.overok');
+		var overbox = document.querySelector('.overbox');
+		var overscoreNumber = document.querySelector('.score');
+		var bestscore = document.querySelector('.bestscore');
+		
+		var bestNumber = 0;
+		var score = [0,0];
+		var down;
+		var up;
+		var createzz;
+		var box3;
+
+		// 开始
+		start.onclick = function(){
+			Go();
+		}
+		// 点击鸟向上飞
+		box2.onclick = function(){
+			clearInterval(up);
+			clearInterval(down);
+			birdflyUp();
+			setTimeout(function(){
+				clearInterval(down);
+				clearInterval(up);
+				birdflyDown();
+			},600)
+		}
+
+		// 游戏开始
+		function Go(){
+			box2.style.display = "block";
+			logobox.style.display = "none";
+			bird.style.display = "block";
+			bird.style.top = "225px";
+			box3 = document.createElement('div');
+			box3.className = "box3";
+			box.appendChild(box3);
+			birdflyDown();
+			createzz =  setInterval(function(){
+				Randzhuzi();
+			},3000)
+		}
+
+		// 游戏结束弹出积分榜
+		function over(){
+			var zhuziAll = document.querySelectorAll('.createzhuzi');
+			for(var k = 0; k < zhuziAll.length; k++){
+				clearInterval(zhuziAll[k].run);
+			} 
+			road.style.animation = "none";
+			bird.style.animation = "none";
+			box3.style.zIndex = "1";
+			clearInterval(createzz);
+			clearInterval(up);
+			clearInterval(down);
+			
+			overscoreNumber.innerText = score[0] + score[1];
+			if(Number(overscoreNumber.innerText) > bestNumber){
+				bestNumber = score[0] + score[1];
+			}
+			bestscore.innerText = bestNumber;
+
+
+			overbox.style.display = "block";
+			overlogo.style.animation = "logoDown 0.75s linear forwards";
+			overscore.style.animation = "scoreRight 0.75s linear forwards";
+			overok.style.animation = "okUp 0.75s linear forwards";
+			box2.style.display = "none";
+		}
+
+		// 点击积分榜确定回到主页
+		overok.onclick = function(){
+			road.style.animation = "roadrun 3s infinite linear";
+			box3.remove();
+			logobox.style.display = "block";
+			bird.style.display = "none";
+			score = [0,0];
+			scoreBox[0].src = "img/0.jpg";
+			scoreBox[1].src = "img/0.jpg";
+			overscoreNumber.innerText = 0;
+			bestscore.innerText = 0;
+			overbox.style.display = "none";
+		}
+
+		// 随机生成柱子
+		function Randzhuzi(){
+			var topHeight = Rand(200,60);
+			var bottomHeight = 280 - topHeight ;
+
+			// 创建柱子
+			var newZhuzi = document.createElement('div');
+			newZhuzi.className = "createzhuzi";
+			box3.appendChild(newZhuzi);
+
+			// 创建上柱子
+			var newTop = document.createElement('div');
+			newTop.className = "createTop";
+			newTop.style.height = topHeight + "px";
+			newZhuzi.appendChild(newTop);
+
+			// 创建上柱子头
+			var newTopHead = document.createElement('img');
+			newTopHead.src = "img/up_pipe.png";
+			newTopHead.className = "createTopHead";
+			newTop.appendChild(newTopHead);
+
+			// 创建下柱子
+			var newBottom = document.createElement('div');
+			newBottom.className = "createBottom";
+			newBottom.style.height = bottomHeight + "px";
+			newZhuzi.appendChild(newBottom);
+
+			// // 创建下柱子头
+			var newBottomHead = document.createElement('img');
+			newBottomHead.src = "img/down_pipe.png";
+			newBottomHead.className = "newBottomHead";
+			newBottom.appendChild(newBottomHead);
+
+			zhuziRun(newZhuzi,topHeight);
+		}
+
+		// 鸟向下飞
+		function birdflyDown(){
+			bird.style.animation = "birdDown 1s infinite linear";
+			var downcishu = 0;
+			var speed = 1;
+			down = setInterval(function(){
+				console.log(bird.offsetTop)
+				bird.style.top = (bird.offsetTop+downcishu*(speed/100)) + "px";
+				downcishu++;
+				speed++;
+				if(bird.offsetTop > 400){
+					over();
+				}
+
+			},25)
+		}
+
+		// 鸟向上飞
+		function birdflyUp(){
+			bird.style.animation = "birdUp 1s infinite linear";
+			var upcishu = 0;
+			var upspeed = 60;
+			up = setInterval(function(){
+				console.log(bird.offsetTop)
+				bird.style.top = (bird.offsetTop-upcishu*(upspeed/100)) + "px";
+				upcishu++;
+				upspeed -= 2;
+				if(bird.offsetTop < 0){
+					over();
+				}
+			},25)
+		}
+
+		// 柱子移动
+		function zhuziRun(zhuzi,topheight){
+			var cishu = 0;
+			zhuzi.isAdd = false;
+			zhuzi.run = setInterval(function(){
+				if((bird.offsetLeft + bird.offsetWidth) > zhuzi.offsetLeft && 
+					bird.offsetLeft < (zhuzi.offsetLeft + zhuzi.offsetWidth) &&
+					(bird.offsetTop < topheight || bird.offsetTop + bird.offsetHeight > (topheight+150)) ){
+					over();
+				}
+				if(zhuzi.offsetLeft < -40 && zhuzi.isAdd == false){
+					addScore();
+					zhuzi.isAdd = true;
+				}
+				if(zhuzi.offsetLeft < -62 ){
+					box3.removeChild(zhuzi);
+				}
+				zhuzi.style.left =  (405-cishu/3) + "px";
+				cishu++;
+			},1)
+		}
+
+		// 加分
+		function addScore(){
+			score[1]++;
+			if(score[1] > 9){
+				score[1] = 0;
+				score[0]++;
+			}
+			scoreBox[0].src = "img/"+score[0]+".jpg";
+			scoreBox[1].src = "img/"+score[1]+".jpg";
+		}
+
+		// 随机数
+		function Rand(max,min){
+			return parseInt(Math.random()*(max-min)+min);
+		}
+	</script>
+</html>
